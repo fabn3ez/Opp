@@ -1,8 +1,90 @@
-// Strathmore grading system
 import java.util.Scanner;
-public class GradingSystem{
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+public class UniversityExamination {
 
+    static class Student {
+        String name;
+        String id;
+        int[] scores = new int[5];
+        double average;
+        char grade;
+        String recommendation;
 
+        public void calculateAverageAndGrade() {
+            int total = 0;
+            for (int score : scores) {
+                total += score;
+            }
+            average = total / 5.0;
+            grade = calculateGrade(average);
+            recommendation = getRecommendation(average);
+        }
+
+        private char calculateGrade(double average) {
+            if (average >= 80) return 'A';
+            else if (average >= 70) return 'B';
+            else if (average >= 60) return 'C';
+            else if (average >= 50) return 'D';
+            else return 'F';
+        }
+
+        private String getRecommendation(double average) {
+            if (average >= 80) return "Excellent";
+            else if (average >= 70) return "Good";
+            else if (average >= 60) return "Fair";
+            else return "Poor";
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Student[] students = new Student[10];
+
+        // Input student details
+        for (int i = 0; i < 1; i++) {
+            students[i] = new Student();
+            System.out.println("Enter details for student " + (i + 1) + ":");
+
+            System.out.print("Enter Student Name: ");
+            students[i].name = scanner.nextLine();
+
+            System.out.print("Enter Student ID: ");
+            students[i].id = scanner.nextLine();
+
+            // Input scores for specific subjects
+            String[] subjects = {"Math", "IT Fundamentals", "Management", "Programming", "Economics"};
+            for (int j = 0; j < subjects.length; j++) {
+                System.out.print("Enter score for " + subjects[j] + ": ");
+                students[i].scores[j] = scanner.nextInt();
+            }
+            scanner.nextLine(); // Consume newline after integer input
+
+            // Calculate average and grade for the student
+            students[i].calculateAverageAndGrade();
+        }
+
+        // Display report cards
+        System.out.println("\nGenerating report cards...\n");
+        for (Student student : students) {
+            displayReportCard(student);
+            System.out.println("Welcome to Strathmore University");
+        }
+
+        scanner.close();
+    }
+
+    private static void displayReportCard(Student student) {
+        System.out.println("Report Card for " + student.name + " (ID: " + student.id + ")");
+        System.out.println("-----------------------------------------------------");
+        for (int j = 0; j < 5; j++) {
+            System.out.println("Subject " + (j + 1) + " Score: " + student.scores[j]);
+        }
+        System.out.printf("Average Score: %.2f\n", student.average);
+        System.out.println("Grade: " + student.grade);
+        System.out.println("Recommendation: " + student.recommendation);
+        System.out.println("Date: " + new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        System.out.println();
+    }
 }
-
