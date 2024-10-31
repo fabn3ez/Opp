@@ -23,17 +23,17 @@ public class UniversityExamination {
         }
 
         private char calculateGrade(double average) {
-            if (average >= 90) return 'A';
-            else if (average >= 80) return 'B';
-            else if (average >= 70) return 'C';
-            else if (average >= 60) return 'D';
+            if (average >= 70) return 'A';
+            else if (average >= 60) return 'B';
+            else if (average >= 50) return 'C';
+            else if (average >= 40) return 'D';
             else return 'F';
         }
 
         private String getRecommendation(double average) {
-            if (average >= 80) return "Excellent";
-            else if (average >= 70) return "Good";
-            else if (average >= 60) return "Fair";
+            if (average >= 70) return "Excellent";
+            else if (average >= 60) return "Good";
+            else if (average >= 50) return "Fair";
             else return "Poor";
         }
     }
