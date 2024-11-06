@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,29 +41,30 @@ public class UniversityExamination {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Student[] students = new Student[10];
+        ArrayList<Student> students = new ArrayList<>(); // Use ArrayList to store students
 
         // Input student details
-        for (int i = 0; i < 1; i++) {
-            students[i] = new Student();
-            System.out.println("Enter details for student " + (i + 1) + ":");
+        for (int i = 0; i < 1; i++) { // Change the loop condition if you want to input more than one student
+            Student student = new Student();
+            System.out.println("Enter details for student " + (students.size() + 1) + ":");
 
             System.out.print("Enter Student Name: ");
-            students[i].name = scanner.nextLine();
+            student.name = scanner.nextLine();
 
             System.out.print("Enter Student ID: ");
-            students[i].id = scanner.nextLine();
+            student.id = scanner.nextLine();
 
             // Input scores for specific subjects
             String[] subjects = {"Math", "IT Fundamentals", "Management", "Programming", "Economics"};
             for (int j = 0; j < subjects.length; j++) {
                 System.out.print("Enter score for " + subjects[j] + ": ");
-                students[i].scores[j] = scanner.nextInt();
+                student.scores[j] = scanner.nextInt();
             }
             scanner.nextLine(); // Consume newline after integer input
 
             // Calculate average and grade for the student
-            students[i].calculateAverageAndGrade();
+            student.calculateAverageAndGrade();
+            students.add(student); // Add the student to the ArrayList
         }
 
         // Display report cards
