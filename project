@@ -1,91 +1,92 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList; // Import ArrayList to use dynamic arrays
+import java.util.Scanner; // Import Scanner for user input
+import java.text.SimpleDateFormat; // Import for date formatting
+import java.util.Date; // Import for date handling
 
 public class UniversityExamination {
 
+    // Static inner class to represent a Student
     static class Student {
-        String name;
-        String id;
-        int[] scores = new int[5];
-        double average;
-        char grade;
-        String recommendation;
+        String name; // Student's name
+        String id; // Student's ID
+        int[] scores = new int[5]; // Array to store scores for 5 subjects
+        double average; // Average score
+        char grade; // Grade based on average score
+        String recommendation; // Recommendation based on average score
 
+        // Method to calculate average score and grade
         public void calculateAverageAndGrade() {
-            int total = 0;
-            for (int score : scores) {
-                total += score;
+            int total = 0; // Initialize total score
+            for (int score : scores) { // Loop through each score
+                total += score; // Sum up the scores
             }
-            average = total / 5.0;
-            grade = calculateGrade(average);
-            recommendation = getRecommendation(average);
+            average = total / 5.0; // Calculate average
+            grade = calculateGrade(average); // Determine grade based on average
+            recommendation = getRecommendation(average); // Get recommendation based on average
         }
 
+        // Method to determine grade based on average score
         private char calculateGrade(double average) {
-            if (average >= 70) return 'A';
-            else if (average >= 60) return 'B';
-            else if (average >= 50) return 'C';
-            else if (average >= 40) return 'D';
-            else return 'F';
+            if (average >= 70) return 'A'; // Grade A for average 70 and above
+            else if (average >= 60) return 'B'; // Grade B for average 60-69
+            else if (average >= 50) return 'C'; // Grade C for average 50-59
+            else if (average >= 40) return 'D'; // Grade D for average 40-49
+            else return 'F'; // Grade F for average below 40
         }
 
+        // Method to get recommendation based on average score
         private String getRecommendation(double average) {
-            if (average >= 70) return "Excellent";
-            else if (average >= 60) return "Good";
-            else if (average >= 50) return "Fair";
-            else return "Poor";
+            if (average >= 70) return "Excellent"; // Recommendation for average 70 and above
+            else if (average >= 60) return "Good"; // Recommendation for average 60-69
+            else if (average >= 50) return "Fair"; // Recommendation for average 50-59
+            else return "Poor"; // Recommendation for average below 50
         }
     }
 
+    // Main method to run the program
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<Student> students = new ArrayList<>(); // Use ArrayList to store students
+        Scanner scanner = new Scanner(System.in); // Create Scanner object for input
+        ArrayList<Student> students = new ArrayList<>(); // Create an ArrayList to store Student objects
 
         // Input student details
-        for (int i = 0; i < 1; i++) { // Change the loop condition if you want to input more than one student
-            Student student = new Student();
+        for (int i = 0; i < 1; i++) { // Loop to input details for one student (modify for more)
+            Student student = new Student(); // Create a new Student object
             System.out.println("Enter details for student " + (students.size() + 1) + ":");
 
             System.out.print("Enter Student Name: ");
-            student.name = scanner.nextLine();
+            student.name = scanner.nextLine(); // Read student name
 
             System.out.print("Enter Student ID: ");
-            student.id = scanner.nextLine();
+            student.id = scanner.nextLine(); // Read student ID
 
             // Input scores for specific subjects
-            String[] subjects = {"Math", "IT Fundamentals", "Management", "Programming", "Economics"};
+            String[] subjects = {"Math", "IT Fundamentals", "Management", "Programming", "Economics"}; // Array of subjects
             for (int j = 0; j < subjects.length; j++) {
                 System.out.print("Enter score for " + subjects[j] + ": ");
-                student.scores[j] = scanner.nextInt();
+                student.scores[j] = scanner.nextInt(); // Read score for each subject
             }
             scanner.nextLine(); // Consume newline after integer input
 
             // Calculate average and grade for the student
-            student.calculateAverageAndGrade();
+            student.calculateAverageAndGrade(); // Call method to calculate average, grade, and recommendation
             students.add(student); // Add the student to the ArrayList
         }
 
         // Display report cards
         System.out.println("\nGenerating report cards...\n");
-        for (Student student : students) {
-            displayReportCard(student);
+        for (Student student : students) { // Loop through each student in the ArrayList
+            displayReportCard(student); // Call method to display report card for each student
         }
 
-        scanner.close();
+        scanner.close(); // Close the scanner to prevent resource leaks
     }
 
+    // Method to display the report card of a student
     private static void displayReportCard(Student student) {
         System.out.println("Report Card for " + student.name + " (ID: " + student.id + ")");
         System.out.println("-----------------------------------------------------");
-        for (int j = 0; j < 5; j++) {
-            System.out.println("Subject " + (j + 1) + " Score: " + student.scores[j]);
+        for (int j = 0; j < 5; j++) { // Loop through each subject score
+            System.out.println("Subject " + (j + 1) + " Score: " + student.scores[j]); // Print score for each subject
         }
-        System.out.printf("Average Score: %.2f\n", student.average);
-        System.out.println("Grade: " + student.grade);
-        System.out.println("Recommendation: " + student.recommendation);
-        System.out.println("Date: " + new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-        System.out.println();
-    }
-}
+        System.out.printf("Average Score: %.2f\n", student.average); // Print average score
+        System.out
