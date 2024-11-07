@@ -89,4 +89,5 @@ public class UniversityExamination {
             System.out.println("Subject " + (j + 1) + " Score: " + student.scores[j]); // Print score for each subject
         }
         System.out.printf("Average Score: %.2f\n", student.average); // Print average score
-        System.out
+        }
+}
